@@ -11,7 +11,7 @@ const Navbar = () => {
             className="flex gap-3 tracking-tight text-3xl text-dark-01 font-bold items-center"
           >
             <img className="w-10" src="/logo.png" alt="" />
-            Tech X
+            TechX
           </Link>
         </div>
         <div className="flex-none hidden lg:block">

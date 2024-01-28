@@ -10,7 +10,9 @@ function App() {
         {/* Navbar */}
         <Navbar />
         {/* Page content here */}
-        <Outlet />
+        <main className="min-h-[calc(100vh-88px)]">
+          <Outlet />
+        </main>
       </div>
       <div className="drawer-side">
         <label
