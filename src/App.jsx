@@ -1,7 +1,30 @@
-import "./App.css";
+import { Outlet } from "react-router-dom";
+import Navbar from "./components/nabvar/Navbar";
+import Sidebar from "./components/nabvar/Sidebar";
 
 function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <div className="drawer font-inter">
+      <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content flex flex-col">
+        {/* Navbar */}
+        <Navbar />
+        {/* Page content here */}
+        <Outlet />
+      </div>
+      <div className="drawer-side">
+        <label
+          htmlFor="my-drawer-3"
+          aria-label="close sidebar"
+          className="drawer-overlay"
+        ></label>
+        <ul className="menu p-4 w-80 min-h-full bg-base-200">
+          {/* Sidebar content here */}
+          <Sidebar />
+        </ul>
+      </div>
+    </div>
+  );
 }
 
 export default App;

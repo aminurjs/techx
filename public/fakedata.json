@@ -1,0 +1,62 @@
+[
+  {
+    "userId": 1,
+    "id": 1,
+    "title": "The Rise of Artificial Intelligence",
+    "body": "Explore the fascinating world of artificial intelligence, its current state, and its potential impact on various industries. Dive into the latest advancements and breakthroughs in AI technology."
+  },
+  {
+    "userId": 1,
+    "id": 2,
+    "title": "Blockchain Demystified: Beyond Cryptocurrencies",
+    "body": "Delve into the fundamentals of blockchain technology, going beyond its association with cryptocurrencies. Uncover its applications in decentralized finance, supply chain management, and more."
+  },
+  {
+    "userId": 1,
+    "id": 3,
+    "title": "The Future of Quantum Computing",
+    "body": "Take a journey into the quantum realm as we discuss the latest developments in quantum computing. Explore the potential of quantum computers and their implications for solving complex problems."
+  },
+  {
+    "userId": 1,
+    "id": 4,
+    "title": "5G Technology: A Game-Changer in Connectivity",
+    "body": "Explore the transformative impact of 5G technology on communication and connectivity. Discuss its potential applications, from faster internet speeds to the Internet of Things (IoT)."
+  },
+  {
+    "userId": 1,
+    "id": 5,
+    "title": "Cybersecurity in the Modern World",
+    "body": "Address the growing concerns of cybersecurity in today's digital age. Discuss emerging threats, innovative security measures, and best practices to protect personal and business data."
+  },
+  {
+    "userId": 1,
+    "id": 6,
+    "title": "The Evolution of Augmented Reality (AR)",
+    "body": "Dive into the evolution of augmented reality, from early experiments to its current applications in gaming, education, and industry. Discuss future trends and the potential impact on our daily lives."
+  },
+  {
+    "userId": 1,
+    "id": 7,
+    "title": "The Role of Chatbots in Customer Service",
+    "body": "Explore how chatbots are revolutionizing customer service in various industries. Discuss the benefits, challenges, and the integration of artificial intelligence in enhancing user experiences."
+  },
+  {
+    "userId": 1,
+    "id": 8,
+    "title": "Sustainable Tech: Innovations for a Greener Future",
+    "body": "Highlight innovative technologies contributing to sustainability and environmental conservation. Discuss solar power advancements, smart energy grids, and eco-friendly tech solutions."
+  },
+  {
+    "userId": 1,
+    "id": 9,
+    "title": "The Internet of Things (IoT): Connecting the World",
+    "body": "Discuss the impact of the Internet of Things on our daily lives. Explore smart home devices, industrial applications, and the future possibilities of a connected world."
+  },
+  {
+    "userId": 1,
+    "id": 10,
+    "title": "Virtual Reality (VR) Beyond Gaming",
+    "body": "Explore the diverse applications of virtual reality beyond the gaming industry. Discuss its use in healthcare, education, and virtual collaboration tools, shaping the way we interact with the digital world."
+  }
+]
