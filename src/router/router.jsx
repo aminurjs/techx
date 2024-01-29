@@ -7,6 +7,7 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import DashboardHome from "../pages/dashboard/DashboardHome";
 import AddPost from "../pages/dashboard/AddPost";
 import EditPost from "../pages/dashboard/EditPost";
+import EditComment from "../pages/postDetails/EditComment";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "/favorites", element: <Favorite /> },
       { path: "/post/:id", element: <PostDetails /> },
+      { path: "/edit-comment/:id", element: <EditComment /> },
       {
         path: "/dashboard",
         element: <Dashboard />,

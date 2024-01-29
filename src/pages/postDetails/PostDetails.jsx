@@ -14,7 +14,7 @@ const PostDetails = () => {
       const sessionData = JSON.parse(sessionRes);
       return setPost(sessionData);
     } else {
-      fetch(`http://localhost:5000/post/${id}`)
+      fetch(`https://techx-server.vercel.app/post/${id}`)
         .then((res) => res.json())
         .then((data) => {
           setPost(data);
@@ -29,7 +29,7 @@ const PostDetails = () => {
       const sessionData = JSON.parse(sessionRes);
       return setComments(sessionData);
     } else {
-      fetch(`http://localhost:5000/post/comments/${id}`)
+      fetch(`https://techx-server.vercel.app/post/comments/${id}`)
         .then((res) => res.json())
         .then((data) => {
           setComments(data);
@@ -47,14 +47,14 @@ const PostDetails = () => {
     const email = e.target.email.value;
     const comment = e.target.comment.value;
     const data = {
-      blogID: parseInt(id),
+      blogId: parseInt(id),
       id: comments.length + 1,
       name,
       email,
       body: comment,
     };
     console.log(data);
-    fetch("http://localhost:5000/comments", {
+    fetch("https://techx-server.vercel.app/comments", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -86,7 +86,7 @@ const PostDetails = () => {
     }).then((willDelete) => {
       if (willDelete) {
         const toastId = toast.loading("Deleting...");
-        fetch(`http://localhost:5000/comment/delete/${id}`, {
+        fetch(`https://techx-server.vercel.app/comment/delete/${comment_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

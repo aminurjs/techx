@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Comment = ({ comment, handleDeleteComment }) => {
   return (
     <div className="mb-3">
@@ -7,7 +9,9 @@ const Comment = ({ comment, handleDeleteComment }) => {
       <h2 className="text-sm mb-1">{comment.email}</h2>
       <p className="text-gray-600">{comment.body}</p>
       <div className="flex gap-2 -mt-1">
-        <button className="btn btn-link p-0 no-underline ">Edit</button>
+        <Link to={`/edit-comment/${comment.id}`}>
+          <button className="btn btn-link p-0 no-underline ">Edit</button>
+        </Link>
         <button
           onClick={() => handleDeleteComment(comment.id)}
           className="btn btn-link p-0 no-underline "

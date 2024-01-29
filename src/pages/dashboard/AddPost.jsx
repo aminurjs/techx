@@ -12,7 +12,7 @@ const AddPost = () => {
       body: description,
     };
     console.log(data);
-    fetch("http://localhost:5000/add-post", {
+    fetch("https://techx-server.vercel.app/add-post", {
       method: "POST",
       headers: {
         "content-type": "application/json",

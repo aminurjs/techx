@@ -8,7 +8,7 @@ const EditPost = () => {
   const [post, setPost] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:5000/post/${id}`)
+    fetch(`https://techx-server.vercel.app/post/${id}`)
       .then((res) => res.json())
       .then((data) => setPost(data));
   }, [id]);
@@ -23,7 +23,7 @@ const EditPost = () => {
       body: description,
     };
     console.log(data);
-    fetch(`http://localhost:5000/update-post/${id}`, {
+    fetch(`https://techx-server.vercel.app/update-post/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

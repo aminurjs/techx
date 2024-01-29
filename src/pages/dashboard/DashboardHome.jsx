@@ -6,7 +6,7 @@ import PostD from "./PostD";
 const DashboardHome = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/posts")
+    fetch("https://techx-server.vercel.app/posts")
       .then((res) => res.json())
       .then((data) => setPosts(data));
   }, []);
@@ -19,7 +19,7 @@ const DashboardHome = () => {
     }).then((willDelete) => {
       if (willDelete) {
         const toastId = toast.loading("Deleting...");
-        fetch(`http://localhost:5000/post/delete/${id}`, {
+        fetch(`https://techx-server.vercel.app/post/delete/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

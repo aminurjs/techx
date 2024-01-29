@@ -28,7 +28,7 @@ const Favorite = () => {
               >
                 <Link
                   className="block text-lg  text-gray-900 font-semibold"
-                  to={`post/${item.id}`}
+                  to={`/post/${item.id}`}
                 >
                   {item.title}
                 </Link>
