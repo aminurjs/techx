@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Comment from "./Comment";
 import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import swal from "sweetalert";
 
 const PostDetails = () => {
   const { id } = useParams();
@@ -36,6 +38,73 @@ const PostDetails = () => {
         });
     }
   }, [id]);
+
+  const handleAddComment = (e) => {
+    e.preventDefault();
+    const toastId = toast.loading("Posting...");
+
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const comment = e.target.comment.value;
+    const data = {
+      blogID: parseInt(id),
+      id: comments.length + 1,
+      name,
+      email,
+      body: comment,
+    };
+    console.log(data);
+    fetch("http://localhost:5000/comments", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.insertedId) {
+          const allComments = [...comments, data];
+          setComments(allComments);
+          const jsonAllComments = JSON.stringify(allComments);
+          sessionStorage.setItem(`comments_${id}`, jsonAllComments);
+          toast.success("Successfully posted!", { id: toastId });
+          e.target.reset();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Something wrong!", { id: toastId });
+      });
+  };
+
+  const handleDeleteComment = (comment_id) => {
+    swal({
+      title: "Are you sure?",
+      icon: "warning",
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        const toastId = toast.loading("Deleting...");
+        fetch(`http://localhost:5000/comment/delete/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              const remaining = comments.filter(
+                (item) => item?.id !== comment_id
+              );
+              setComments(remaining);
+              const jsonRemainComments = JSON.stringify(remaining);
+              sessionStorage.setItem(`comments_${id}`, jsonRemainComments);
+              toast.success("Successfully Deleted!", { id: toastId });
+            }
+          });
+      }
+    });
+  };
   return (
     <div className="bg-gray-100 min-h-[50vh] border-t border-gray-200">
       <section className="max-w-5xl mx-auto ">
@@ -46,7 +115,10 @@ const PostDetails = () => {
             </h2>
             <p className="text-gray-600">{post?.body}</p>
           </div>
-          <form className="mb-4 space-y-2 pb-4 border-b border-gray-200">
+          <form
+            onSubmit={handleAddComment}
+            className="mb-4 space-y-2 pb-4 border-b border-gray-200"
+          >
             <div className="flex gap-2">
               <label className="w-20" htmlFor="name">
                 Name:
@@ -89,9 +161,13 @@ const PostDetails = () => {
             <button className="btn btn-neutral btn-sm rounded">Comment</button>
           </form>
           {comments.length > 0 ? (
-            <div>
+            <div className="flex flex-col-reverse">
               {comments.map((comment) => (
-                <Comment key={comment.id} comment={comment} />
+                <Comment
+                  key={comment.id}
+                  comment={comment}
+                  handleDeleteComment={handleDeleteComment}
+                />
               ))}
             </div>
           ) : (

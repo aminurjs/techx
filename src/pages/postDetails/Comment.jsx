@@ -1,4 +1,4 @@
-const Comment = ({ comment }) => {
+const Comment = ({ comment, handleDeleteComment }) => {
   return (
     <div className="mb-3">
       <h3 className="text-lg md:text-xl text-gray-900 font-bold">
@@ -8,7 +8,12 @@ const Comment = ({ comment }) => {
       <p className="text-gray-600">{comment.body}</p>
       <div className="flex gap-2 -mt-1">
         <button className="btn btn-link p-0 no-underline ">Edit</button>
-        <button className="btn btn-link p-0 no-underline ">Delete</button>
+        <button
+          onClick={() => handleDeleteComment(comment.id)}
+          className="btn btn-link p-0 no-underline "
+        >
+          Delete
+        </button>
       </div>
     </div>
   );
