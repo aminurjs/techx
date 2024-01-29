@@ -6,7 +6,7 @@ import swal from "sweetalert";
 
 const PostDetails = () => {
   const { id } = useParams();
-  const [post, setPost] = useState([]);
+  const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
   useEffect(() => {
     const sessionRes = sessionStorage.getItem(`post_${id}`);
