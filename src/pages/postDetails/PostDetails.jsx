@@ -1,17 +1,46 @@
 import { useEffect, useState } from "react";
+import Comment from "./Comment";
+import { useParams } from "react-router-dom";
 
 const PostDetails = () => {
+  const { id } = useParams();
   const [post, setPost] = useState([]);
+  const [comments, setComments] = useState([]);
   useEffect(() => {
-    fetch("../fakepost.json")
-      .then((res) => res.json())
-      .then((data) => setPost(data));
-  }, []);
+    const sessionRes = sessionStorage.getItem(`post_${id}`);
+    if (sessionRes) {
+      const sessionData = JSON.parse(sessionRes);
+      return setPost(sessionData);
+    } else {
+      fetch(`http://localhost:5000/post/${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setPost(data);
+          const dataJson = JSON.stringify(data);
+          sessionStorage.setItem(`post_${id}`, dataJson);
+        });
+    }
+  }, [id]);
+  useEffect(() => {
+    const sessionRes = sessionStorage.getItem(`comments_${id}`);
+    if (sessionRes) {
+      const sessionData = JSON.parse(sessionRes);
+      return setComments(sessionData);
+    } else {
+      fetch(`http://localhost:5000/post/comments/${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setComments(data);
+          const dataJson = JSON.stringify(data);
+          sessionStorage.setItem(`comments_${id}`, dataJson);
+        });
+    }
+  }, [id]);
   return (
-    <div className="bg-gray-100 min-h-[calc(50vh)]">
+    <div className="bg-gray-100 min-h-[50vh] border-t border-gray-200">
       <section className="max-w-5xl mx-auto ">
         <div className="bg-white p-5 rounded-md " key={post.id}>
-          <div className="border-b border-gray-200 pb-8 mb-5">
+          <div className="border-b border-gray-200 pb-10 mb-5">
             <h2 className="block text-2xl text-gray-900 font-bold mb-4">
               {post?.title}
             </h2>
@@ -59,6 +88,19 @@ const PostDetails = () => {
             </div>
             <button className="btn btn-neutral btn-sm rounded">Comment</button>
           </form>
+          {comments.length > 0 ? (
+            <div>
+              {comments.map((comment) => (
+                <Comment key={comment.id} comment={comment} />
+              ))}
+            </div>
+          ) : (
+            <div className="bg-white py-10">
+              <h2 className="text-2xl text-center text-gray-900 font-bold">
+                Please add comment.
+              </h2>
+            </div>
+          )}
         </div>
       </section>
     </div>

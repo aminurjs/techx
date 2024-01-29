@@ -4,7 +4,7 @@ import { useState } from "react";
 const Post = ({ post }) => {
   const favJson = sessionStorage.getItem("favorites");
   const favItems = JSON.parse(favJson);
-  const favItem = favItems.find((item) => item.id === post.id);
+  const favItem = favItems?.find((item) => item.id === post.id);
   const [fav, setFav] = useState(favItem);
 
   const handleFavorite = () => {
@@ -42,8 +42,8 @@ const Post = ({ post }) => {
           className="block text-lg md:text-xl text-gray-900 font-bold mb-2"
         >
           {post?.title.length > 25
-            ? `${post.title.slice(0, 25)} ...`
-            : post.title}
+            ? `${post?.title.slice(0, 25)} ...`
+            : post?.title}
         </Link>
         {!fav ? (
           <button
